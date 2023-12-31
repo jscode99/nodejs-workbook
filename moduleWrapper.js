@@ -14,7 +14,7 @@
 
 (function (exports, require, module, __filename, __dirname) {
   const myConstant = "This is my constant";
-  console.log(myConstant);
+  console.log("Module Wrapper Constant ====> ",myConstant);
 })();
 
 /**

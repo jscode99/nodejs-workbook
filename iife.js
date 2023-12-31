@@ -9,10 +9,10 @@
 
 (function () {
   const superHero = "Batman";
-  console.log(superHero);
+  console.log("IIFE constant 1 ====> ", superHero);
 })();
 
 (function () {
   const superHero = "Superman";
-  console.log(superHero);
+  console.log("IIFE constant 2 ====> ", superHero);
 })();

@@ -10,7 +10,7 @@ class ModuleCachingExample {
   }
 
   getName() {
-    console.log(this.name);
+    console.log("Module Caching constant ====>",this.name);
   }
 
   setName(name) {

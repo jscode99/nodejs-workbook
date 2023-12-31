@@ -16,3 +16,6 @@ newModuleCaching.getName(); // result : Supergirl (Instead of wonder women we ge
 const math = require("./moduleImportExport"); // Pattern 3
 console.log("Import-Export Pattern add ======>", math.add(10, 20));
 console.log("Import-Export Pattern substract ======>", math.substract(20, 10));
+
+// ======================== export vs module.exports ====================================
+require('./exportVsModuleExport')

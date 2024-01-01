@@ -26,3 +26,6 @@ console.log("JSON Data ====> ", jsonData);
 
 // ======================== Built-In Module: path ====================================
 require('./pathModule');
+
+// ======================== Callback pattern or style ====================================
+require('./callbackPattern');

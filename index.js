@@ -23,3 +23,6 @@ require('./exportVsModuleExport')
 // ================================== JSON ==============================================
 const jsonData = require('./data'); // require will parse the JSON into Js object
 console.log("JSON Data ====> ", jsonData);
+
+// ======================== Built-In Module: path ====================================
+require('./pathModule');

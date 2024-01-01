@@ -19,3 +19,7 @@ console.log("Import-Export Pattern substract ======>", math.substract(20, 10));
 
 // ======================== export vs module.exports ====================================
 require('./exportVsModuleExport')
+
+// ================================== JSON ==============================================
+const jsonData = require('./data'); // require will parse the JSON into Js object
+console.log("JSON Data ====> ", jsonData);

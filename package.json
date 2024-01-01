@@ -1,13 +1,13 @@
 {
-  "name": "nodejs-workbook",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "serve":"nodemon index.js",
-    "serve:mjs":"nodemon main.mjs"
-  },
-  "dependencies": {
-    "nodemon": "^3.0.2"
-  }
+	"name": "nodejs-workbook",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"scripts": {
+		"serve": "node --watch index.js",
+		"serve:mjs": "nodemon main.mjs"
+	},
+	"dependencies": {
+		"nodemon": "^3.0.2"
+	}
 }

@@ -62,3 +62,6 @@ memberFn.on("displayMembers", (members) => {
 memberFn.pickMember("Princess Diana");
 memberFn.pickMember("Superman");
 memberFn.displayMember();
+
+// ======================== Character Set & Encoding ====================================
+require('./characterSetAndEncoding');

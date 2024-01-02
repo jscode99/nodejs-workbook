@@ -29,3 +29,6 @@ require('./pathModule');
 
 // ======================== Callback pattern or style ====================================
 require('./callbackPattern');
+
+// ======================== Built-In Module: events ====================================
+require('./eventsModule');

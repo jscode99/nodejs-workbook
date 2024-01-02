@@ -18,17 +18,47 @@ console.log("Import-Export Pattern add ======>", math.add(10, 20));
 console.log("Import-Export Pattern substract ======>", math.substract(20, 10));
 
 // ======================== export vs module.exports ====================================
-require('./exportVsModuleExport')
+require("./exportVsModuleExport");
 
 // ================================== JSON ==============================================
-const jsonData = require('./data'); // require will parse the JSON into Js object
+const jsonData = require("./data"); // require will parse the JSON into Js object
 console.log("JSON Data ====> ", jsonData);
 
 // ======================== Built-In Module: path ====================================
-require('./pathModule');
+require("./pathModule");
 
 // ======================== Callback pattern or style ====================================
-require('./callbackPattern');
+require("./callbackPattern");
 
 // ======================== Built-In Module: events ====================================
-require('./eventsModule');
+require("./eventsModule");
+
+// ======================== Built-In Module: events extended (Custom) ====================================
+const CustomMessageToMembers = require("./customEventEmitter");
+
+const memberFn = new CustomMessageToMembers();
+
+memberFn.on("pickMember", (member) => {
+  if (member === "Princess Diana" && member !== "Superman") {
+    console.log(
+      "Custom Event Emitter example ====>",
+      `Ask ${member} about Kryptonite!`,
+    );
+  } else {
+    console.log(
+      "Custom Event Emitter example ====>",
+      `Hey ${member}!, Wassup buddy ??`,
+    );
+  }
+});
+
+memberFn.on("displayMembers", (members) => {
+  console.log(
+    "Custom Event Emitter example ====>",
+    `There are ${members} member present in the batmobile.`,
+  );
+});
+
+memberFn.pickMember("Princess Diana");
+memberFn.pickMember("Superman");
+memberFn.displayMember();

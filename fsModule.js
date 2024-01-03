@@ -42,3 +42,22 @@ fs.writeFile(
     }
   },
 );
+
+// ===================== Readable and Writable Stream ===============================
+const readableStream = fs.createReadStream("./file.txt", {
+  encoding: "utf-8",
+  // highWaterMark: 2, If you want to see the chunks of data. Because the buffer streams use has a default size of 64 kilobytes.
+});
+
+const writableStream = fs.createWriteStream("./file2.txt");
+
+readableStream.on("data", (chunks) => {
+  console.log("Readable stream chunks ====>", chunks);
+  writableStream.write(chunks, (err) => {
+    if (!err) {
+      console.log("Streamed chunks successfully!!");
+      return;
+    }
+    console.log("Something went wrong in streaming ===>", err);
+  });
+});

@@ -69,3 +69,5 @@ require('./characterSetAndEncoding');
 // ======================== Streams & Buffer ============================================
 require('./streamsAndBuffers');
 
+// ======================== Async Javascript ============================================
+require('./asynchronousJS')

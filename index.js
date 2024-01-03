@@ -65,3 +65,7 @@ memberFn.displayMember();
 
 // ======================== Character Set & Encoding ====================================
 require('./characterSetAndEncoding');
+
+// ======================== Streams & Buffer ============================================
+require('./streamsAndBuffers');
+

@@ -9,6 +9,20 @@
  * 
  * Eg:- Watching a video on Youtube
  *      -) The data arrives in chunks and we watch in chunks while the rest of the data arrives over time.
+ * 
+ * -) =================== Types Of Streams =====================
+ *    1) Readable Stream - from which data can be read.
+ *       Eg:- Reading from a file as readable stream.
+ * 
+ *    2) Writable Stream - to which data can be written.
+ *       Eg:- Writing to a file as writable stream.
+ * 
+ *    3) Duplex Stream - that are both Readable and Writable.
+ *       Eg:- Sockets as a duplex stream.
+ * 
+ *    4) Transform Stream - that can modify or transform data as it is written and read.
+ *       Eg:- File compression where you can write compressed data and read de-compressed data
+ *            to and from a file as a transform stream.
  */
 
 /**

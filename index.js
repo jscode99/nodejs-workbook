@@ -20,20 +20,20 @@ console.log("Import-Export Pattern substract ======>", math.substract(20, 10));
 // ======================== export vs module.exports ====================================
 require("./exportVsModuleExport");
 
-// ================================== JSON ==============================================
+// ============== JSON ===================================================
 const jsonData = require("./data"); // require will parse the JSON into Js object
 console.log("JSON Data ====> ", jsonData);
 
-// ======================== Built-In Module: path ====================================
+// ============== Built-In Module: path ===================================
 require("./pathModule");
 
-// ======================== Callback pattern or style ====================================
+// ============== Callback pattern or style ===============================
 require("./callbackPattern");
 
-// ======================== Built-In Module: events ====================================
+// ============== Built-In Module: events =================================
 require("./eventsModule");
 
-// ======================== Built-In Module: events extended (Custom) ====================================
+// ============= Built-In Module: events extended (Custom) =================
 const CustomMessageToMembers = require("./customEventEmitter");
 
 const memberFn = new CustomMessageToMembers();
@@ -63,11 +63,14 @@ memberFn.pickMember("Princess Diana");
 memberFn.pickMember("Superman");
 memberFn.displayMember();
 
-// ======================== Character Set & Encoding ====================================
-require('./characterSetAndEncoding');
+// =========== Character Set & Encoding ====================
+require("./characterSetAndEncoding");
 
-// ======================== Streams & Buffer ============================================
-require('./streamsAndBuffers');
+// =========== Streams & Buffer ============================
+require("./streamsAndBuffers");
 
-// ======================== Async Javascript ============================================
-require('./asynchronousJS')
+// =========== Async Javascript =============================
+require("./asynchronousJS");
+
+// =========== Built-In Module: fs Module ===================
+require("./fsModule");

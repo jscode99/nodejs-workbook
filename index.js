@@ -74,3 +74,6 @@ require("./asynchronousJS");
 
 // =========== Built-In Module: fs Module ===================
 require("./fsModule");
+
+// =========== Built-In Module: fs Promise Module ===========
+require("./fsPromiseModule");

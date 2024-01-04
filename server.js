@@ -18,13 +18,17 @@ const server = http.createServer((req, res) => {
   // const batManFile = fs.readFileSync(batManFilePath, "utf-8");
   // res.end(batManFile);
 
-
+  // =============== Dynamic value injection =============================
+  const name = "Mr.Bruce Wayne";
+  let batManFile = fs.readFileSync(batManFilePath, "utf-8");
+  batManFile = batManFile.replace("{{name}}", name);
+  res.end(batManFile);
   /**
-   * ====================== Important Note ===================== 
+   * ====================== Important Note =====================
    * readFileSync will read the entire file at once. Will store the content to a temporary
    * buffer which may lead to unnecessary use of memory. Instead we can rely on streams.
    */
-  fs.createReadStream(batManFilePath).pipe(res);
+  // fs.createReadStream(batManFilePath).pipe(res);
 });
 
 server.listen(3000, () => {

@@ -72,9 +72,12 @@ require("./streamsAndBuffers");
 // =========== Async Javascript =============================
 require("./asynchronousJS");
 
-// =========== Built-In Module: fs Module ===================
+// =========== Built-In Module: fs ==========================
 require("./fsModule");
 require("./pipes");
 
-// =========== Built-In Module: fs Promise Module ===========
+// =========== Built-In Module: fs Promise  =================
 require("./fsPromiseModule");
+
+// =========== Built-In Module: HTTP ========================
+require('./httpWorks') // How HTTP works and why we need it.

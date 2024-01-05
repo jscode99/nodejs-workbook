@@ -35,7 +35,6 @@
  *            the file contents are retrieved and the associated callback function can be run."
  */
 
-
 /**
  * ================================ Thread Pool Experiment =================================
  *
@@ -44,15 +43,16 @@
 const crypto = require("node:crypto");
 
 // Synchronous method for Password-Based Key Derivation Function 2
-const start = Date.now();
+const syncStart = Date.now();
 crypto.pbkdf2Sync("password", "somesalt", 100000, 64, "sha512"); // Hash : 173ms
 crypto.pbkdf2Sync("password", "somesalt", 100000, 64, "sha512"); // Hash : 333ms difference is also double - 160ms
 crypto.pbkdf2Sync("password", "somesalt", 100000, 64, "sha512"); // Hash : 488ms difference is also double - 155ms
-console.log("Hash sync :", Date.now() - start);
+console.log("Hash sync :", Date.now() - syncStart);
 
 /**
  * Experiment - 1:- Every method in node.js that has the "sync" suffix always runs on the main thread and is blocking.
  */
+
 
 
 
@@ -86,12 +86,76 @@ for (let i = 0; i < MAX_CALL; i++) {
 /**
  * ================================ Thread Pool Size =================================
  * -) Libuv's thread pool has 4 threads in total (default).
- * 
- * -) Increasing the thread pool size can potentially improve the performance of CPU-bound tasks that are offloaded to the 
- *    thread pool, allowing them to run concurrently. However, it's important to note that increasing the thread pool size 
+ *
+ * -) Increasing the thread pool size can potentially improve the performance of CPU-bound tasks that are offloaded to the
+ *    thread pool, allowing them to run concurrently. However, it's important to note that increasing the thread pool size
  *    also increases the overall system resource usage.
  */
 
-
 // Experiment to increase the number of threads in thread pool.
 // process.env.UV_THREADPOOL_SIZE = 6; // Current system has only 4 CPU cores, so I'm not increasing the number of threads.
+
+
+
+
+
+/**
+ * ==================================== Network I/O Experiment =====================================
+ *
+ */
+
+const https = require("node:https");
+
+const networkAsyncStart = Date.now();
+const MAX_NW_CALLS = 10; // Exceeds thread pool size but here scenerio is different.
+
+for (let i = 0; i < MAX_NW_CALLS; i++) {
+  https
+    .request("https://www.google.com", (res) => {
+      res.on("data", () => {});
+      res.on("end", () => {
+        console.log(
+          `NW I/O Request: ${i + 1} took ${Date.now() - networkAsyncStart}`,
+        );
+      });
+    })
+    .end();
+}
+/**
+ * -) Although both crypto.pbkdf2 and https.request are asynchronous, https.request method 
+ *    does not seem to use the thread pool.
+ * 
+ * -) https.request does not seem to be affected by the number of CPU cores either.
+ * 
+ * -) https.request is a network I/O operation and not a CPU bound operation. It does not use the thread pool.
+ * 
+ * -) Libuv instead delegates the work to the operating system kernel and whenever possible, it will polll the kernel and
+ *    see if the request has completed.
+ * 
+ */
+
+
+
+
+
+/**
+ * ============================================ SUMMARY ==============================================
+ * 
+ * -) In Node.js, async methods are handled by libuv.
+ * 
+ * -) They are handled in two different ways: 1) Native async mechanism 2) Thread Pool.
+ * 
+ * -) Whenever possible, Libuv will use native async mechanisms in the OS so as to avoid blocking the main thread.
+ * 
+ * -) Since this is part of the kernel, there is different mechanism for each OS. We have epoll for Linux, Kqueue for MacOS and
+ *    IO Completion Port on Windows.
+ * 
+ * -) Relying on native async mechanisms makes Node scalable as the only limitation is the operating system kernel.
+ *    EG:- A network I/O operation.
+ * 
+ * -) If there is no native async support and the task is file I/O or CPU intensive, libuv uses the thread pool to avoid blocking
+ *    the main thread.
+ * 
+ * -) Although the thread pool preserves asynchronicity with respect to Node's main thread, it can still become a bottleneck if all
+ *    threads are busy.
+ */

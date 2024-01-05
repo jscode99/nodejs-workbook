@@ -80,5 +80,8 @@ require("./pipes");
 require("./fsPromiseModule");
 
 // =========== Built-In Module: HTTP ========================
-require('./httpWorks') // How HTTP works and why we need it.
-require('./server') // Node server
+require("./httpWorks"); // How HTTP works and why we need it.
+require("./server"); // Node server
+
+// =========== libuv - Dependency in Node.js written in C language ========================
+require("./libuv");
